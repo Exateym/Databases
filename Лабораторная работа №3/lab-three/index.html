@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Лабораторная работа №3</title>
+    <script>
+        function fetchQueryResult(queryNumber) {
+            // Создаем новый AJAX-запрос.
+            const xhr = new XMLHttpRequest();
+			
+			/* Инициализирует ajax-запрос.
+			method: тип запроса "GET";
+			url: адрес ресурса, к которому отправляется запрос;
+			async: логическое значение, которое указывает, будет ли запрос асинхронным. */
+            
+			const baseUrl = window.location.origin; // Получаем текущий хост
+			xhr.open("GET", "query.php?query=" + queryNumber, true);
+
+
+            xhr.onreadystatechange = function () { /* Устанавливается функция-обработчик, которая будет вызвана
+			каждый раз, когда меняется состояние xhr (объекта запроса). Это стандартный способ отслеживания
+			изменений в процессе запроса. */
+                if (xhr.readyState === 4 && xhr.status === 200) {
+				/* xhr.readyState === 4 означает, что запрос завершен (успешно или с ошибкой).
+				Значение 4 соответствует состоянию "DONE". xhr.status === 200 проверяет,
+				что HTTP-ответ от сервера имеет статус 200, что обычно означает успешный ответ (OK).
+				Если запрос завершен с другим статусом (например, 404 для "не найдено"), эта часть кода не будет выполняться. */
+                    // Помещаем результат запроса в HTML-элемент с id="result".
+                    document.getElementById("result").innerHTML = xhr.responseText;
+                }
+            };
+
+            xhr.send(); // Отправляем запрос, обработчик замечает изменения в объекте.
+        }
+    </script>
+</head>
+<body>
+    <h1>Результаты SQL-запросов</h1>
+    <!-- Обращение к скрипту при нажатии кнопки -->
+    <button onclick="fetchQueryResult(1)">Запрос 1: Список сотрудников, телефоны и зарплаты</button>
+    <button onclick="fetchQueryResult(2)">Запрос 2: Список сотрудников с адресами</button>
+    <button onclick="fetchQueryResult(3)">Запрос 3: Сотрудники с опытом работы более 4 лет</button>
+
+    <!-- Блок для отображения результата запроса -->
+    <div id="result" style="margin-top: 20px;"></div>
+</body>
+</html>
