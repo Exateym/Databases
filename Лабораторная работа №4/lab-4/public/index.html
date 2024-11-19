@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Демонстрация команд MySQL</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Левая панель с командами -->
+        <div class="left-panel">
+            <!-- Раздел 1: Список таблиц -->
+            <section id="table-list">
+                <h2>Список таблиц</h2>
+                <ul id="table-names">
+                    <!-- Здесь асинхронно будет добавлен список таблиц через JS -->
+                </ul>
+                
+            </section>
+
+            <!-- Раздел 2: DDL-команды -->
+            <section id="ddl-commands">
+                <h2>DDL-команды</h2>
+                <div class="command-block">
+                    <label for="ddl-table-create">CREATE TABLE</label>
+                    <input type="text" id="ddl-table-create" placeholder="Имя новой таблицы и параметры столбцов">
+                    <button onclick="createTable()">Выполнить CREATE</button>
+                </div>                                                
+                <div class="command-block">
+                    <label for="ddl-table-alter">ALTER TABLE</label>
+                    <select id="ddl-table-alter">
+                        <option value="">Выберите таблицу</option>
+                    </select>
+                    <input type="text" placeholder="Изменения" id="ddl-alter-args">
+                    <button onclick="alterTable()">Выполнить ALTER</button>
+                </div>
+                <div class="command-block">
+                    <label for="ddl-table-drop">DROP TABLE:</label>
+                    <select id="ddl-table-drop">
+                        <option value="">Выберите таблицу</option>
+                    </select>
+                    <button onclick="dropTable()">Выполнить DROP</button>
+                </div>
+                <div class="command-block">
+                    <label for="ddl-table-truncate">TRUNCATE TABLE</label>
+                    <select id="ddl-table-truncate">
+                        <option value="">Выберите таблицу</option>
+                    </select>
+                    <button onclick="truncateTable()">Выполнить TRUNCATE</button>
+                </div>
+            </section>
+
+            <!-- Раздел 3: DML-команды -->
+            <section id="dml-commands">
+                <h2>DML-команды</h2>
+                <div class="command-block">
+                    <label for="dml-table-insert">INSERT INTO</label>
+                    <select id="dml-table-insert">
+                        <option value="">Выберите таблицу</option>
+                    </select>
+                    <input type="text" placeholder="Список столбцов через запятую" id="dml-insert-column-list">
+                    <input type="text" placeholder="VALUES" id="dml-insert-values">
+                    <button onclick="insertData()">Выполнить INSERT</button>
+                </div>
+                <div class="command-block">
+                    <label for="dml-table-update">UPDATE</label>
+                    <select id="dml-table-update">
+                        <option value="">Выберите таблицу</option>
+                    </select>
+                    <input type="text" placeholder="Аргументы для команды" id="dml-update-args">
+                    <button onclick="updateData()">Выполнить UPDATE</button>
+                </div>
+                <div class="command-block">
+                    <label for="dml-table-delete">DELETE FROM</label>
+                    <select id="dml-table-delete">
+                        <option value="">Выберите таблицу</option>
+                    </select>
+                    <input type="text" placeholder="WHERE" id="dml-delete-args">
+                    <button onclick="deleteData()">Выполнить DELETE</button>
+                </div>
+                <div class="command-block">
+                    <label for="dml-table-select">SELECT * FROM</label>
+                    <select id="dml-table-select">
+                        <option value="">Выберите таблицу</option>
+                    </select>
+                    <input type="text" placeholder="WHERE" id="dml-select-args">
+                    <button onclick="selectData()">Выполнить SELECT</button>
+                </div>
+            </section>
+
+            <!-- Раздел 4: INNER JOIN -->
+            <section id="inner-join">
+                <h2>INNER JOIN</h2>
+                <label for="join-table-1">Таблица 1:</label>
+                <select id="join-table-1">
+                    <option value="">Выберите таблицу</option>
+                </select>
+                <label for="join-table-2">Таблица 2:</label>
+                <select id="join-table-2">
+                    <option value="">Выберите таблицу</option>
+                </select>
+                <input type="text" placeholder="Условие соединения" id="join-args">
+                <button data-command="inner-join">Выполнить INNER JOIN</button>
+            </section>
+        </div>
+
+        <!-- Правая панель с выводом результата -->
+        <div class="right-panel">
+            <section id="query-result">
+                <h2>Результат запроса</h2>
+                <div id="result-table">
+                    <!-- Здесь будет отображаться таблица с результатом запроса -->
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>
+<script src="scripts/table_names/update_list.js"></script>
+<script src="scripts/fetchTableList.js"></script>
+<script src="scripts/createTable.js"></script>
+<script src="scripts/dropTable.js"></script>
+<script src="scripts/deleteData.js"></script>
+<script src="scripts/selectData.js"></script>
+<script src="scripts/insertData.js"></script>
+<script src="scripts/alterTable.js"></script>
+<script src="scripts/truncateTable.js"></script>
+<script src="scripts/updateData.js"></script>
+<script src="scripts/innerJoin.js"></script>

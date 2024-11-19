@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/styles.css">
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
+    <title>Lab4</title>
+</head>
+<body>
+    <div id="main">
+        <div class="left">
+            <div class="container">
+                <div class="container DDL">
+                    <form method="POST" id="DDLform">
+                        <label>Table name<input type="text" name="tableName" placeholder="Enter table name"></label>
+                        <label>Parameters<input type="text" name="queryParams" placeholder="Enter query parameters"></label>
+                        <div id="DDLbuttons">
+                            <input type="submit" name="Print" id="PrintButton">
+                        </div>
+                    </form>
+                </div>
+                <div class="container lister">
+                    <h3>Tables</h3>
+                    <div id="listBox">
+
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+
+            </div>
+        </div>
+        <div class="right">
+            <div id="resultTable">
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script src="./js/ShowTableList.js"></script>
+<script src="./js/PrintTable.js"></script>
